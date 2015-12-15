@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='https://fonts.googleapis.com/css?family=Baumans' rel='stylesheet' type='text/css'>
+    <title>FC Barcelona</title>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
+    </script>
+    <style>
+
+    .main {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-top: auto;
+        font-family: 'Baumans', cursive;
+        
+    }
+
+    body{
+       
+        background-image: url(images/fc2.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    nav{
+        color:#fff;
+        padding-top: auto;
+        font-size: 2em;
+        text-align: center;
+        text-decoration: underline;
+        
+    }
+
+    nav a:hover {
+        color:#fa2e4f;
+    } 
+
+    h2{ 
+        font-size: 5em;
+        text-align: center;     
+        height: 100px;
+        color: #8F1105;
+    }
+    h3 {
+       
+        font-size: 3em;
+        text-align: left;
+
+    }
+     h4{
+       
+        font-size: 3em;
+        text-align: left;
+
+    }
+    p{
+        padding-left: 15px;
+        font-size: 1em;
+        font-family: 'Baumans', cursive;
+       text-align: left;
+    }
+    img {
+       
+    }
+
+    .content{
+        display: block;
+        background: #5c8aa1;
+    }
+    .page1{
+        margin: 0px;
+        border:2px dotted #8F1105;
+    }
+    .page2{
+        border:2px dotted #FFF;
+    }
+    .page3{
+        border:2px dotted #FFF;
+    }
+    .active{
+        color: #FFF;
+    }
+    </style>
+    <script>
+    $(document).ready(function(){
+        // add a click event to each button
+        $('nav > a').click(function(e){
+            // check if link is currently active
+            if ( $(e.target).hasClass("active") ) { 
+                // quit out of function because the page is already loaeded 
+                return;
+            }
+            else {                                 
+                // remove current active class and add it to the clicked element
+                $('nav > a').removeClass("active");
+                $(e.target).addClass("active");
+            }
+            
+            // fade out the main content
+            $('.content').fadeOut('slow',function(){
+                // we can use the button id to construct a filename for the html file you want to load
+                var page = e.target.id + ".html";
+                // loads the html file into the div with the ".content" class
+                $('.content').load(page, function(){
+                    // if we want to further manipulate the new content we can do it in this function
+                    $(this).children(":first").append("<p>This is the new loaded content for "+e.target.id+"</p>");
+                    $('.content').fadeIn('slow');
+                });
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h2>FC BARCELONA</h2>
+        <nav>
+            <a href="#" id="page1">Kings of Europe</a>
+            <a href="#" id="page2">More than a Club</a>
+            <a href="#" id="page3">News</a>
+         </nav>
+        
+        <div class="content"></div>
+             <footer>
+                     © Copyright FC Barcelona 
+            </footer>
+    </div>
+    
+</body>
+
+</html>
